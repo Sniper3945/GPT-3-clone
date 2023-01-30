@@ -1,4 +1,4 @@
-const apiKey = "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";
+let apiKey = "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";
 // Récupération de la textarea, du boutton et de la div chat-container
 const textarea = document.getElementById("textarea");
 const submitBtn = document.getElementById("submit-btn");
@@ -89,7 +89,7 @@ submitBtn.addEventListener("click", function(event) {
     reponse.appendChild(rvalue);
     axios.post('https://api.openai.com/v1/completions', {
          model: "text-davinci-003",
-         prompt: `${textareaValue}`, // je teste d'enlever le prompt de base pour en esseyer un autre pour réduire le temps de génération : tu es un professeur de lycée et un élève te pose une question: ${textareaValue} :répond a cette question avec le plus de détail possible
+         prompt: `you are a high school teacher and you must answer this question as precisely as possible:${textareaValue}`, // je teste d'enlever le prompt de base pour en esseyer un autre pour réduire le temps de génération : tu es un professeur de lycée et un élève te pose une question: ${textareaValue} :répond a cette question avec le plus de détail possible
          max_tokens: 1000,
          temperature: 0,
      },
@@ -145,18 +145,15 @@ class Autogrow extends HTMLTextAreaElement{
     }
 
     onFocus = () =>{
-        console.log("onFocus")
         this.autogrow()     
         window.addEventListener('resize', this.onResize)
         this.addEventListener('input', this.autogrow)
         this.removeEventListener('focus', this.onFocus)
     }
     onResize(){
-        console.log("onResize")
         this.autogrow()
     }
     autogrow = () =>{
-        console.log("Agrandir")
         this.style.height = 'auto'
         this.style.height = this.scrollHeight + 'px'
     }
