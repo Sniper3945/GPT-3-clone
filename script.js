@@ -1,4 +1,4 @@
-const apiKey = "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";
+const apiKey = "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";
 // Récupération de la textarea, du boutton et de la div chat-container
 const textarea = document.getElementById("textarea");
 const submitBtn = document.getElementById("submit-btn");
@@ -6,6 +6,7 @@ const chatContainer = document.querySelector(".chat-container");
 const i = 0;
 const speed = 80;
 let counter = 1;
+
 
 
 // Ajout d'un écouteur d'événement "click" au bouton
@@ -37,7 +38,7 @@ submitBtn.addEventListener("click", function(event) {
     // img-user
     const imguser = document.createElement("img");
     imguser.classList.add("img-user");
-    imguser.src = '/essai/img/usericon.png';
+    imguser.src = 'img/usericon.png';  
     imgcontainer.appendChild(imguser);
     
     // question
@@ -73,7 +74,7 @@ submitBtn.addEventListener("click", function(event) {
     // img-chat-value
     const imgvalue = document.createElement("img");
     imgvalue.classList.add("img-chat");
-    imgvalue.src = '/essai/img/logo.jpg';
+    imgvalue.src = 'img/logo.jpg';
     imgchat.appendChild(imgvalue);
     
     // reponse
@@ -88,7 +89,7 @@ submitBtn.addEventListener("click", function(event) {
     reponse.appendChild(rvalue);
     axios.post('https://api.openai.com/v1/completions', {
          model: "text-davinci-003",
-         prompt: `tu es un professeur et un élève te pose une question: ${textareaValue} :répond a cette question avec le plus de détail possible`,
+         prompt: `${textareaValue}`, // je teste d'enlever le prompt de base pour en esseyer un autre pour réduire le temps de génération : tu es un professeur de lycée et un élève te pose une question: ${textareaValue} :répond a cette question avec le plus de détail possible
          max_tokens: 1000,
          temperature: 0,
      },
